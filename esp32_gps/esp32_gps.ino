@@ -20,42 +20,50 @@ long last = 0;
 TinyGPSPlus gps;
 
 HardwareSerial gps_serial(2);
+FirebaseJson json;
 
 void setup(void) {
 
   Serial.begin(9600);
- Serial2.begin(9600, SERIAL_8N1, RXD2, TXD2);
- WiFi.begin(WIFI_SSID, WIFI_PASSWORD);
+  Serial2.begin(9600, SERIAL_8N1, RXD2, TXD2);
+  WiFi.begin(WIFI_SSID, WIFI_PASSWORD);
 
   while (WiFi.status() != WL_CONNECTED)
   {
     delay(500);
     Serial.print(".");
-    
+
   }
-   Firebase.begin(FIREBASE_HOST, FIREBASE_AUTH);
-last=millis();
+  Firebase.begin(FIREBASE_HOST, FIREBASE_AUTH);
+  last = millis();
 
 }
 
 void loop() {
-  
+
 
   while (Serial2.available() > 0) {
 
     if (gps.encode(Serial2.read())) {
 
       if (gps.location.isValid()) {
+   
+ 
+       
+       
 
         Serial.print("Latitude   = ");
 
         Serial.println(gps.location.lat(), 6);
-         Firebase.setFloat(firebaseData, "GPS/LOC", gps.location.lat());
+       // Firebase.setFloat(firebaseData, "GPS/LOC", gps.location.lat());
 
         Serial.print("Longitude  = ");
 
         Serial.println(gps.location.lng(), 6);
-         Firebase.setFloat(firebaseData, "GPS/LOC2", gps.location.lng());
+        //Firebase.setFloat(firebaseData, "GPS/LOC2", gps.location.lng());
+
+        json.set("Latitude",gps.location.lat());
+        json.set("Longitude",gps.location.lng());
 
       }
 
@@ -66,10 +74,10 @@ void loop() {
       if (gps.altitude.isValid()) {
 
         Serial.print("Altitude   = ");
-        
+
 
         Serial.print(gps.altitude.meters());
-         Firebase.setFloat(firebaseData, "GPS/Altitude", gps.altitude.meters());
+      json.set("Altitude",gps.altitude.meters());
 
 
         Serial.println(" meters");
@@ -85,6 +93,7 @@ void loop() {
         Serial.print("Speed      = ");
 
         Serial.print(gps.speed.kmph());
+         json.set("Speed",gps.speed.kmph());
 
         Serial.println(" kmph");
 
@@ -98,23 +107,25 @@ void loop() {
 
         Serial.print("Time (GMT) : ");
 
-        if(gps.time.hour() < 10)     Serial.print("0");
+        if (gps.time.hour() < 10)     Serial.print("0");
 
-        Serial.print(gps.time.hour()+7);
-        
+        Serial.print(gps.time.hour() + 7);
+     
 
         Serial.print(":");
 
-        if(gps.time.minute() < 10)   Serial.print("0");
+        if (gps.time.minute() < 10)   Serial.print("0");
 
         Serial.print(gps.time.minute());
 
         Serial.print(":");
 
-        if(gps.time.second() < 10)   Serial.print("0");
+        if (gps.time.second() < 10)   Serial.print("0");
 
         Serial.println(gps.time.second());
-
+//       json.set("Time",(gps.time.hour() + 7));
+//        json.set("Time",(gps.time.minute());
+//         json.set("Time",(gps.time.second());
       }
 
       else
@@ -125,19 +136,24 @@ void loop() {
 
         Serial.print("Date       : ");
 
-        if(gps.date.day() < 10)      Serial.print("0");
+        if (gps.date.day() < 10)      Serial.print("0");
 
         Serial.print(gps.date.day());
 
         Serial.print("/");
 
-        if(gps.date.month() < 10)    Serial.print("0");
+        if (gps.date.month() < 10)    Serial.print("0");
 
         Serial.print(gps.date.month());
 
         Serial.print("/");
 
         Serial.println(gps.date.year());
+
+//        json.set("Date",gps.date.day());
+//        json.set("Date",gps.date.month());
+//        json.set("Date",gps.date.year());
+
 
       }
 
@@ -156,7 +172,9 @@ void loop() {
       else
 
         Serial.println("Satellites Invalid");
-//delay(5000);
+      //delay(5000);
+
+       Firebase.pushJSON(firebaseData, "/GPS/", json);
     }
 
   }

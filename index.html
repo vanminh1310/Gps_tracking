@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript" src="/js/jQuery-2.1.3.js"></script>
+
+    <link type="text/css" href="/css/main.css" rel="stylesheet" />
+    <title>GPS TRACKING</title>
+</head>
+<body>
+    <article class="shadow pt-3 pl-3 pr-3">
+        <div class="post-content text-justify">
+            <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin="" />
+            <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
+            
+            <div class="hide" data-form="template" style="display:none">
+                <div class="box-route">
+                    <div class="form-group" style="margin-bottom:1px">
+                        <div class="row">
+                            <div class="col-sm-12" style="text-align:center">
+                                <div class="btn-group">
+                                    <button class="btn btn-info btn-sm btn-control" style="margin-right: 5px" type="button" data-cmd="play">Chạy</button>
+                                    <button class="btn btn-info btn-sm btn-control" style="margin-right: 5px" type="button" data-cmd="pause">Dừng</button>
+                                    <button class="btn btn-info btn-sm btn-control" type="button" data-cmd="reset">Chạy lại</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group route-table" style="margin-bottom: 0px">
+                        <div class="table-ul">
+                            <ul class="table-ul-header">
+                                <li class="col0">Thời gian</li>
+                                <li class="col3 text-center">Tọa độ</li>
+                            </ul>
+
+                        </div>
+                        <div class="table-ul-body">
+                            <div class="table-ul"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="mapId" style="width: 100%;"></div>
+
+            
+        </div>
+    </article>
+      
+<script src="https://www.gstatic.com/firebasejs/8.1.2/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.1.2/firebase-database.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.1.2/firebase-auth.js"></script>
+    <script type="text/javascript" src="/js/main.js"></script>
+</body>
+</html>

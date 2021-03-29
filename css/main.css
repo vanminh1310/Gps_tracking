@@ -1,0 +1,122 @@
+.box {
+    position: relative;
+    border-radius: 3px;
+    background: #ffffff;
+    border-top: 3px solid #d2d6de;
+    box-shadow: 0 1px 1px rgba(0,0,0,0.1);
+}
+
+.box-route .table-ul .col0 {
+    max-width: 130px;
+    overflow: hidden;
+    width: 60px;
+    text-align: center
+}
+
+.box-route .table-ul .col3 {
+}
+
+.box-route .table-ul ul.active li {
+    background-color: #fcf8e3;
+}
+
+.slider {
+    width: 100%;
+}
+
+.table-ul {
+    display: table;
+    width: 100%;
+    border: solid 1px #ddd
+}
+
+    .table-ul ul {
+        list-style: none;
+        padding: 0px !important;
+        margin: 0px;
+        display: table-row
+    }
+
+        .table-ul ul li {
+            padding: 2px;
+            margin: 0px;
+            display: table-cell;
+            font-size: 11px
+        }
+
+        .table-ul ul.table-ul-header li {
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .table-ul ul li {
+            border-right: solid 1px #ddd
+        }
+
+            .table-ul ul li:last-child {
+                border-right: none
+            }
+
+        .table-ul ul li {
+            border-bottom: solid 1px #ddd;
+            cursor: pointer
+        }
+
+        .table-ul ul:last-child li {
+            border-bottom: none
+        }
+
+        .table-ul ul:hover li {
+            background-color: #f5f5f5;
+        }
+
+        .table-ul ul.table-ul-header:hover li {
+            background-color: white
+        }
+
+        .table-ul ul.bg-success:hover li {
+            background-color: #28a745 !important
+        }
+
+.table-ul-body {
+    border: solid 1px #ddd;
+    max-height: 346px;
+    overflow-y: scroll;
+    position: relative
+}
+
+    .table-ul-body .table-ul {
+        border: none
+    }
+
+        .table-ul-body .table-ul ul:last-child li {
+            border-bottom: solid 1px #ddd
+        }
+
+.btn-control {
+    padding: 5px 8px;
+    font-size: 9px;
+    line-height: 1.6
+}
+
+#mapId {
+    height: 600px
+}
+
+.area-tracking {
+    height: 400px
+}
+
+@media (max-width: 767px) {
+    #mapId {
+        height: 480px
+    }
+
+    .table-ul-body {
+        max-height: 146px
+    }
+
+    .area-tracking {
+        height: 200px
+    }
+}
