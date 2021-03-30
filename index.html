@@ -14,8 +14,8 @@
         <div class="post-content text-justify">
             <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin="" />
             <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
-            
-            <div class="hide" data-form="template" style="display:none">
+           <div class="area-tracking box"> 
+            <div class="hide" data-form="template" style="display:block">
                 <div class="box-route">
                     <div class="form-group" style="margin-bottom:1px">
                         <div class="row">
@@ -30,18 +30,24 @@
                     </div>
                     <div class="form-group route-table" style="margin-bottom: 0px">
                         <div class="table-ul">
-                            <ul class="table-ul-header">
+                            <ul id="myList" class="table-ul-header">
                                 <li class="col0">Thời gian</li>
-                                <li class="col3 text-center">Tọa độ</li>
+                                <li class="col3 text-center">Vĩ độ</li>
+                           
                             </ul>
 
                         </div>
-                        <div class="table-ul-body">
-                            <div class="table-ul"></div>
+                        
+                        <div id="table-ul" class="table-ul-body">
+                            <div id="ule" class="table-ul">
+
+                            </div>
                         </div>
+                    
                     </div>
                 </div>
             </div>
+        </div>
             <div id="mapId" style="width: 100%;"></div>
 
             
@@ -51,6 +57,6 @@
 <script src="https://www.gstatic.com/firebasejs/8.1.2/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.1.2/firebase-database.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.1.2/firebase-auth.js"></script>
-    <script type="text/javascript" src="/js/main.js"></script>
+    <script type="text/javascript" src="/js/map.js"></script>
 </body>
 </html>

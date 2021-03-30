@@ -120,3 +120,12 @@
         height: 200px
     }
 }
+.area-tracking{
+
+position:absolute; 
+width: 190px; 
+bottom: 2px; 
+left: 2px;
+ z-index:999;
+  padding: 1px
+}
