@@ -13,8 +13,7 @@
     text-align: center
 }
 
-.box-route .table-ul .col3 {
-}
+
 
 .box-route .table-ul ul.active li {
     background-color: #fcf8e3;
@@ -27,7 +26,7 @@
 .table-ul {
     display: table;
     width: 100%;
-    border: solid 1px #ddd
+    border: solid 1px #2367fa
 }
 
     .table-ul ul {
@@ -79,14 +78,14 @@
         }
 
 .table-ul-body {
-    border: solid 1px #ddd;
+    border: solid 1px #2367fa;
     max-height: 346px;
     overflow-y: scroll;
     position: relative
 }
 
     .table-ul-body .table-ul {
-        border: none
+        border: solid 1px #2367fa
     }
 
         .table-ul-body .table-ul ul:last-child li {
@@ -100,7 +99,7 @@
 }
 
 #mapId {
-    height: 600px
+    height: 400px
 }
 
 .area-tracking {
@@ -129,3 +128,42 @@ left: 2px;
  z-index:999;
   padding: 1px
 }
+
+.mybuton {
+    margin-left: 10px;
+	background-color:transparent;
+	border-radius:19px;
+	border:1px solid #2367fa;
+	display:inline-block;
+	cursor:pointer;
+	color: #2367fa;
+	font-family:Courier New;
+	font-size:16px;
+	font-weight:bold;
+	padding:12px 27px;
+	text-decoration:none;
+	text-shadow:0px 0px 0px #263666;
+}
+.mybuton:hover {
+	background-color:transparent;
+}
+.mybuton:active {
+	position:relative;
+	top:1px;
+}
+
+.buton{
+    margin-top:20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family:Courier New;
+	font-size:16px;
+    font-weight:bold;
+}  

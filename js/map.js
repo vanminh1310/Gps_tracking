@@ -25,11 +25,7 @@ function gotData(data) {
     var scores = data.val();
     // Grab the keys to iterate over the object
     var keys = Object.keys(scores);
-
-
-    // var textnode = document.createTextNode("Water");
-  
-  
+    // var textnode = document.createTextNode("Water"
     
     for (var i = 0; i < keys.length; i++) {
       var k = keys[i];
@@ -41,6 +37,26 @@ function gotData(data) {
     }
     console.log("LA",vido,"LO",kinhdo)
 }
+
+function click_pass(){
+    var myModal= document.getElementById('modal')
+    var modal = bootstrap.Modal.getInstance(myModal)
+    var pass = document.getElementById('pass').value
+    var passW = firebase.database().ref().child("pass")
+        passW.on('value',function(passW){
+       var pass2 = passW.val();
+       if(pass== pass2){
+       
+        $('#modal').modal('hide');
+        $('body').removeClass('modal-open');
+        $('.modal-backdrop').remove();
+        
+    }
+   
+        });
+
+}
+
   
 
 
@@ -49,14 +65,23 @@ function gotData(data) {
 
 
 // tạo map
-var map = L.map('mapId').setView([10.8447125, 106.797841667], 20);
+var map = L.map('mapId').setView([10.8447125, 106.797841667], 15);
 
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.facebook.com/taminh1310">Văn Minh</a> contributors'
 }).addTo(map);
 
+L.tileLayer.wms("http://mesonet.agron.iastate.edu/cgi-bin/wms/nexrad/n0r.cgi", {
+    layers: 'nexrad-n0r-900913',
+    format: 'image/png',
+    transparent: true,
+    attribution: "Weather data © 2012 IEM Nexrad"
+});
+
+
 
 
 L.marker([10.8447125, 106.797841667]).addTo(map)
     .bindPopup('Tôi ở đây <br>Văn Minh')
-    .openPopup();
+    //.bindPopup(vido)
+    
