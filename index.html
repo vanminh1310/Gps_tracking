@@ -24,7 +24,7 @@
             </div>
             
             <div class="buton">
-                <button id="btn1" data-bs-toggle="modal" href="#modal" class="mybuton">Tracking Realtime</button>
+                <button id="btn1" onclick="btn1_click()" data-bs-toggle="modal" href="#modal" class="mybuton">Tracking Realtime</button>
                 <button id="btn2" data-bs-toggle="modal" href="#modal"  class="mybuton">Lộ trình xe di chuyển </button>
             </div>
 <!-- table -->
@@ -42,7 +42,7 @@
             </div>
             <!-- First modal dialog -->
 
-<div  class="modal fade" id="modal"  data-keyboard="false" data-backdrop="static">
+    <div class="modal fade show" id="modal" tabindex="-1" role="dialog" data-keyboard="false" data-backdrop="static">
     <div  class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
              Hãy đảm bảo bạn là người quản trị. 
@@ -52,6 +52,7 @@
                 <input type="password" id="pass" class="form-control" placeholder="Password" aria-label="Username" aria-describedby="addon-wrapping">
               </div>
           <button class="btn btn-primary" onclick="click_pass()" >Đăng nhập</button>
+          <button class="btn btn-primary">Close</button>
         </div>
       </div>
     </div>

@@ -36,8 +36,9 @@ function gotData(data) {
      
     }
     console.log("LA",vido,"LO",kinhdo)
+    
 }
-
+  
 function click_pass(){
     var myModal= document.getElementById('modal')
     var modal = bootstrap.Modal.getInstance(myModal)
@@ -49,13 +50,19 @@ function click_pass(){
        
         $('#modal').modal('hide');
         $('body').removeClass('modal-open');
-        $('.modal-backdrop').remove();
+        $('.modal-backdrop').remove();  
+        console.log("test1");
         
     }
    
         });
 
 }
+
+
+
+
+
 
   
 
