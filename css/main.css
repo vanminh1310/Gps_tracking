@@ -167,3 +167,10 @@ left: 2px;
 	font-size:16px;
     font-weight:bold;
 }  
+.cards{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2vw;
+    /* display: none; */
+}

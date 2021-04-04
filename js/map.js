@@ -13,14 +13,12 @@ var ref = firebase.database().ref("GPS");
 ref.on("value", gotData);
 var kinhdo;
 var vido;
-String.prototype.format = function () {
-    var content = this;
-    for (var i = 0; i < arguments.length; i++) {
-        var reg = new RegExp("\\{" + i + "\\}", "gm");
-        content = content.replace(reg, arguments[i]);
-    }
-    return content;
-};
+var btncheck = document.getElementById("btn-check-2");
+var btncheck2 = document.getElementById("btn-check-21");
+
+if( btncheck2.checked == false){
+    document.getElementById('tab').style.display='none' 
+}
 
 function gotData(data) {
     var scores = data.val();
@@ -33,17 +31,22 @@ function gotData(data) {
         // Look at each fruit object!
         vido = scores[k].Latitude;
         kinhdo = scores[k].Longitude;
-        console.log("LA", vido, "LO", kinhdo)
+    //     var row = $("<ul>"); row.css("cursor", "pointer");
+    //     console.log("LA", vido, "LO", kinhdo)
 
+    //     //$("li").append("<li class='col0'></li>",kinhdo);
+    //     var tableBody = document.getElementById('isa')
+    //    tableBody.innerHTML=kinhdo
+       $("#isa").append($("<ul>").html(kinhdo));
+       $("#isas").append($("<ul>").html(vido));
     }
-    console.log("LA", vido, "LO", kinhdo)
+    console.log("LA",this.vido, "LO", this.kinhdo)
 
 }
 
 function click_pass() {
     var myModal = document.getElementById('modal')
-    var btncheck = document.getElementById("btn-check-2");
-    var btncheck2 = document.getElementById("btn-check-21");
+   
 
     var pass = document.getElementById('pass').value
     var passW = firebase.database().ref().child("pass")
@@ -57,7 +60,8 @@ function click_pass() {
             console.log("test1");
             // alert("Chế độ Checking Real Time")
             document.getElementById('tab').style.display='none'
-            btncheck.style.backgroundColor = "red";
+            document.getElementById('card12').style.display='block'
+           
         }
         if (pass == pass2 && btncheck2.checked == true) {
 
@@ -66,6 +70,7 @@ function click_pass() {
             $('.modal-backdrop').remove();
             console.log("test12");
             document.getElementById('tab').style.display='block'
+            document.getElementById('card12').style.display='none'
         }
         else{
             document.getElementById("tb").innerHTML="Mật khẩu sai rồi hay thử lại nhé!"
@@ -76,8 +81,6 @@ function click_pass() {
     });
 
 }
-
-
 
 
 

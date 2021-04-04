@@ -31,36 +31,61 @@
 <body>
 
 
-    <div id="mapId" style=" width: 100%;">
+    <div  id="mapId" style=" width: 100%; margin-top: 5vh">
         <div class="from-a"></div>
 
     </div>
 
     <div class="buton">
       
-        <input type="checkbox" data-bs-toggle="modal" href="#modal" class="btn-check" id="btn-check-2" >
-        <label data-toggle="tooltip" title="Chế độ check real time!" class="btn btn-primary" for="btn-check-2">TrackingRealtime</label>
-       <box style="width: 10px;"></box>
        
-       <input   type="checkbox" data-bs-toggle="modal" href="#modal"  class="btn-check" id="btn-check-21" >
-        <label class="btn btn-primary" for="btn-check-21">Lộ trình xe di chuyển</label>
       
+        <div class="form-check form-switch">
+            <input class="form-check-input" data-bs-toggle="modal" href="#modal" type="checkbox" id="btn-check-2">
+            <label class="form-check-label" for="flexSwitchCheckDefault">TrackingRealtime</label>
+          </div>
+          <box style="width: 10px;"></box>
+          <div class="form-check form-switch">
+            <input class="form-check-input" data-bs-toggle="modal" href="#modal" type="checkbox" id="btn-check-21">
+            <label class="form-check-label" for="flexSwitchCheckDefault">Lộ trình xe di chuyển</label>
+          </div>
+
     </div>
+
+    
     <!-- table -->
-    <div id="tab" class="form-group route-table" style="margin-bottom: 0px ; display: block;">
+    <div id="tab" class="form-group route-table" style="margin-bottom: 0px ; display: none;">
         <div class="table-ul">
             <ul class="table-ul-header">
-                <li class="col0">Thời gian</li>
+                <li  class="col0">Thời gian</li>
                 <li class="col3 text-center">Kinh độ</li>
-                <li class="col3 text-center">Vĩ độ</li>
+             
             </ul>
 
         </div>
-        <div class="table-ul-body">
-            <div class="table-ul"></div>
+        <div  class="table-ul-body">
+            <div style="display: flex;"    class="table-ul">
+                <div id="isa"></div>
+                <div id="isas"></div>
+            </div>
+
         </div>
     </div>
     <!-- First modal dialog -->
+
+    <!-- card -->
+    <div  class="cards" >
+    <div id="card12" style="display: none;" class="card" style="width: 18rem;">
+        <div class="card-body">
+          <h5 class="card-title">Hệ thống giám sát thời gian thực</h5>
+          <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+          <a href="#" class="card-link">Card link</a>
+          <a href="#" class="card-link">Another link</a>
+        </div>
+      </div>
+    </div>
+    <!--  -->
 
     <div class="modal fade show" id="modal" tabindex="-1" role="dialog" data-keyboard="false" data-backdrop="static">
         <div class="modal-dialog modal-dialog-centered">
@@ -87,11 +112,8 @@
 
 
 
-    <script>
-        $(document).ready(function(){
-            $('[data-toggle="tooltip"]').tooltip(); 
-        });
-        </script>
+
+   
 
     <script src="https://www.gstatic.com/firebasejs/8.1.2/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.1.2/firebase-database.js"></script>
