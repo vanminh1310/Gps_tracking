@@ -17,8 +17,17 @@ var btncheck = document.getElementById("btn-check-2");
 var btncheck2 = document.getElementById("btn-check-21");
 
 if( btncheck2.checked == false){
-    document.getElementById('tab').style.display='none' 
+    // document.getElementById('tab').style.display='none' 
 }
+
+String.prototype.format = function () {
+    var content = this;
+    for (var i = 0; i < arguments.length; i++) {
+        var reg = new RegExp("\\{" + i + "\\}", "gm");
+        content = content.replace(reg, arguments[i]);
+    }
+    return content;
+};
 
 function gotData(data) {
     var scores = data.val();
@@ -31,14 +40,18 @@ function gotData(data) {
         // Look at each fruit object!
         vido = scores[k].Latitude;
         kinhdo = scores[k].Longitude;
-    //     var row = $("<ul>"); row.css("cursor", "pointer");
+       
+         var row = $("<ul>"); row.css("cursor", "pointer");
     //     console.log("LA", vido, "LO", kinhdo)
 
     //     //$("li").append("<li class='col0'></li>",kinhdo);
-    //     var tableBody = document.getElementById('isa')
+     
     //    tableBody.innerHTML=kinhdo
-       $("#isa").append($("<ul>").html(kinhdo));
-       $("#isas").append($("<ul>").html(vido));
+    row.append("<li class='col0'>{0}</li>".format(kinhdo));
+    row.append("<li class='col3'>{0}</li>".format(vido));
+    row.click(function () { alert() }); // ham click
+    // sai jquery 
+    $( ".table-ul-body .table-ul" ).append(row);
     }
     console.log("LA",this.vido, "LO", this.kinhdo)
 

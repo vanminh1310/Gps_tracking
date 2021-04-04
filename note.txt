@@ -1,0 +1,11 @@
+Những vấn đề phát sinh 
+- hệ thống còn lỗi khi nhấn nút nhập mâtk hẩu qua lại 
+- chưa được mượt mà 
+- phần table còn chưa được đã lấy dữ liệu tuy nhiên cần chỉnh lại dữ liệu bao gồm cả thời gian, tốc độ và vị trí sao cho nó hợp lý 
++ nhưgx việc cần làm 
+    - thiết kế mạch cho hệ thống 
+    - bổ sung mmodal ecall cho hệ thống 
+    - xây dựng việc tracking 
+    - thêm menu 
++ tiến độ 30%
+_ngày 4/4/2021
