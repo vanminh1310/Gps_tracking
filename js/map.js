@@ -27,6 +27,7 @@ String.prototype.format = function () {
         content = content.replace(reg, arguments[i]);
     }
     return content;
+    
 };
 
 function gotData(data) {
@@ -40,16 +41,22 @@ function gotData(data) {
         // Look at each fruit object!
         vido = scores[k].Latitude;
         kinhdo = scores[k].Longitude;
-       
+        L.marker([10.8447125, 106.797841667], {icon: greenIcon}).addTo(map) .bindPopup(kinhdo);
          var row = $("<ul>"); row.css("cursor", "pointer");
     //     console.log("LA", vido, "LO", kinhdo)
 
     //     //$("li").append("<li class='col0'></li>",kinhdo);
      
     //    tableBody.innerHTML=kinhdo
-    row.append("<li class='col0'>{0}</li>".format(kinhdo));
+    row.append("<li class='col0'>{0},</li>".format(vido));
     row.append("<li class='col3'>{0}</li>".format(vido));
-    row.click(function () { alert() }); // ham click
+    row.append("<li class='col3'>{0},</li>".format(kinhdo));
+    row.append("<li class='col3'>{0},</li>".format(kinhdo));
+    row.click(function () { 
+       alert($(this).text()); // get data from row on list 
+       var index = $(this).text();
+       console.log(index)
+     }); // ham click
     // sai jquery 
     $( ".table-ul-body .table-ul" ).append(row);
     }
@@ -98,7 +105,17 @@ function click_pass() {
 
 
 
+// icon 
+var greenIcon = L.icon({
+    iconUrl: 'icon.png',
+    
 
+    iconSize:     [50, 41], // size of the icon
+    //shadowSize:   [50, 64], // size of the shadow
+    iconAnchor:   [15, 39], // point of the icon which will correspond to marker's location
+    //shadowAnchor: [4, 62],  // the same for the shadow
+    popupAnchor:  [-2, -40] // point from which the popup should open relative to the iconAnchor
+});
 
 
 
@@ -107,7 +124,7 @@ function click_pass() {
 
 // tạo map
 var map = L.map('mapId').setView([10.8447125, 106.797841667], 15);
-
+L.marker([10.8447125, 106.797841667], {icon: greenIcon}).addTo(map) .bindPopup();
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.facebook.com/taminh1310">Văn Minh</a> contributors'
 }).addTo(map);
@@ -121,7 +138,3 @@ L.tileLayer.wms("http://mesonet.agron.iastate.edu/cgi-bin/wms/nexrad/n0r.cgi", {
 
 
 
-
-L.marker([10.8447125, 106.797841667]).addTo(map)
-    .bindPopup('Tôi ở đây <br>Văn Minh')
-//.bindPopup(vido)
