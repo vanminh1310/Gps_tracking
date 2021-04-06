@@ -44,7 +44,7 @@ function gotData(data) {
         // Look at each fruit object!
         vido = scores[k].Latitude;
         kinhdo = scores[k].Longitude;
-        L.marker([10.8447125, 106.797841667], {icon: greenIcon}).addTo(map) .bindPopup(kinhdo);
+        //L.marker([10.8447125, 106.797841667], {icon: greenIcon}).addTo(map) .bindPopup(kinhdo);
          var row = $("<ul>"); row.css("cursor", "pointer");
     //     console.log("LA", vido, "LO", kinhdo)
 
@@ -52,13 +52,16 @@ function gotData(data) {
      
     //    tableBody.innerHTML=kinhdo
     row.append("<li class='col0'>{0},</li>".format(vido));
-    row.append("<li class='col3'>{0}</li>".format(vido));
-    row.append("<li class='col3'>{0},</li>".format(kinhdo));
-    row.append("<li class='col3'>{0},</li>".format(kinhdo));
+    // row.append("<li class='col3'>{0}</li>".format(vido));
+    row.append("<li class='col3'>{0}</li>".format(kinhdo));
+    // row.append("<li class='col3'>{0},</li>".format(kinhdo));
     row.click(function () { 
-       alert($(this).text()); // get data from row on list 
-       var index = $(this).text();
-       console.log(index)
+      // alert($(this).text()); // get data from row on list 
+       var array = $(this).text().split(',',1)[0];
+       var array2 = $(this).text().split(',',2)[1];
+       L.marker([array, array2], {icon: greenIcon}).addTo(map)
+       console.log(array)
+       console.log(array2)
      }); // ham click
     // sai jquery 
     $( ".table-ul-body .table-ul" ).append(row);
@@ -126,8 +129,8 @@ var greenIcon = L.icon({
 
 
 // tạo map
-var map = L.map('mapId').setView([10.8447125, 106.797841667], 15);
-L.marker([10.8447125, 106.797841667], {icon: greenIcon}).addTo(map) .bindPopup();
+var map = L.map('mapId').setView([10.8447125, 106.797841667], 5);
+//L.marker([10.8447125, 106.797841667], {icon: greenIcon}).addTo(map) .bindPopup();
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.facebook.com/taminh1310">Văn Minh</a> contributors'
 }).addTo(map);
