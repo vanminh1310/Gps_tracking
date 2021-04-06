@@ -16,8 +16,11 @@ var vido;
 var btncheck = document.getElementById("btn-check-2");
 var btncheck2 = document.getElementById("btn-check-21");
 
-if( btncheck2.checked == false){
-    // document.getElementById('tab').style.display='none' 
+if( btncheck2.checked == false  ){
+     document.getElementById('tab').style.display='none' 
+}
+if( btncheck.checked == false  ){
+    document.getElementById('card12').style.display='none' 
 }
 
 String.prototype.format = function () {
