@@ -231,3 +231,7 @@ body {
   .header-right {
     float: none;
   }}
+  strong{
+      color: #2367fa;
+      margin-left: 1vw;
+  }

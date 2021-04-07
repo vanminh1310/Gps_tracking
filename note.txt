@@ -9,3 +9,8 @@ Những vấn đề phát sinh
     - thêm menu 
 + tiến độ 30%
 _ngày 4/4/2021
+
++ ngày 7/4/2021
+    - ý tưởng để kích hoạt ecall 
+    + khi nút bấm nhấn gửi 1 giá trị lên database hệ thống luôn lấy cái dữ liệu này sau khi giá trị thay đổi thực hiện hàm get dữ liệu từ database về sau đó hiển thị
+    

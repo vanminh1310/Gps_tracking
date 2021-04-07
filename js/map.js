@@ -17,10 +17,10 @@ var btncheck = document.getElementById("btn-check-2");
 var btncheck2 = document.getElementById("btn-check-21");
 
 if( btncheck2.checked == false  ){
-     document.getElementById('tab').style.display='none' 
+ //   document.getElementById('tab').style.display='none' 
 }
 if( btncheck.checked == false  ){
-    document.getElementById('card12').style.display='none' 
+   // document.getElementById('card12').style.display='none' 
 }
 
 String.prototype.format = function () {
@@ -44,13 +44,9 @@ function gotData(data) {
         // Look at each fruit object!
         vido = scores[k].Latitude;
         kinhdo = scores[k].Longitude;
-        //L.marker([10.8447125, 106.797841667], {icon: greenIcon}).addTo(map) .bindPopup(kinhdo);
+    
          var row = $("<ul>"); row.css("cursor", "pointer");
-    //     console.log("LA", vido, "LO", kinhdo)
 
-    //     //$("li").append("<li class='col0'></li>",kinhdo);
-     
-    //    tableBody.innerHTML=kinhdo
     row.append("<li class='col0'>{0},</li>".format(vido));
     // row.append("<li class='col3'>{0}</li>".format(vido));
     row.append("<li class='col3'>{0}</li>".format(kinhdo));
@@ -60,6 +56,7 @@ function gotData(data) {
        var array = $(this).text().split(',',1)[0];
        var array2 = $(this).text().split(',',2)[1];
        L.marker([array, array2], {icon: greenIcon}).addTo(map)
+       map.setView([array,array2], 20); // zoom 
        console.log(array)
        console.log(array2)
      }); // ham click
@@ -113,12 +110,12 @@ function click_pass() {
 
 // icon 
 var greenIcon = L.icon({
-    iconUrl: 'icon.png',
+    iconUrl: 'icon2.png',
     
 
-    iconSize:     [50, 41], // size of the icon
+    iconSize:     [70, 45], // size of the icon
     //shadowSize:   [50, 64], // size of the shadow
-    iconAnchor:   [15, 39], // point of the icon which will correspond to marker's location
+    iconAnchor:   [25, 25], // point of the icon which will correspond to marker's location
     //shadowAnchor: [4, 62],  // the same for the shadow
     popupAnchor:  [-2, -40] // point from which the popup should open relative to the iconAnchor
 });
