@@ -42,7 +42,7 @@ void setup(void) {
 void loop() {
 
 
-  while (Serial2.available() > 0) {
+ 
 
     if (gps.encode(Serial2.read())) {
 
@@ -110,22 +110,22 @@ void loop() {
         if (gps.time.hour() < 10)     Serial.print("0");
 
         Serial.print(gps.time.hour() + 7);
-     
+      json.set("Time",(gps.time.hour() + 7));
 
         Serial.print(":");
 
         if (gps.time.minute() < 10)   Serial.print("0");
 
         Serial.print(gps.time.minute());
+        json.set("minute",(gps.time.minute()+0));
 
         Serial.print(":");
 
         if (gps.time.second() < 10)   Serial.print("0");
 
         Serial.println(gps.time.second());
-//       json.set("Time",(gps.time.hour() + 7));
-//        json.set("Time",(gps.time.minute());
-//         json.set("Time",(gps.time.second());
+       
+       json.set("Second",(gps.time.second()+0));
       }
 
       else
@@ -150,9 +150,9 @@ void loop() {
 
         Serial.println(gps.date.year());
 
-//        json.set("Date",gps.date.day());
-//        json.set("Date",gps.date.month());
-//        json.set("Date",gps.date.year());
+        json.set("Date",gps.date.day()+0);
+       json.set("month",gps.date.month()+0);
+       json.set("year",gps.date.year()+0);
 
 
       }
@@ -172,11 +172,11 @@ void loop() {
       else
 
         Serial.println("Satellites Invalid");
-      //delay(5000);
+    
 
        Firebase.pushJSON(firebaseData, "/GPS/", json);
+       Serial.println("gui du lieu");
+
     }
 
   }
-
-}

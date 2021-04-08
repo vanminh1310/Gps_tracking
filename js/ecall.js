@@ -39,24 +39,37 @@ function gotData(data) {
         // Look at each fruit object!
         vido = scores[k].Latitude;
         kinhdo = scores[k].Longitude;
-    
-         var row = $("<ul>"); row.css("cursor", "pointer");
+        time = scores[k].Time
+        min = scores[k].minute
+        se = scores[k].Second
+        day = scores[k].Date
+        mon = scores[k].month
+        ye = scores[k].year
+        speed = scores[k].Speed
+        console.log(time + "/" + min + "/" + se)
 
-    row.append("<li class='col0'>{0},</li>".format(vido));
-    // row.append("<li class='col3'>{0}</li>".format(vido));
-    row.append("<li class='col3'>{0}</li>".format(kinhdo));
-    // row.append("<li class='col3'>{0},</li>".format(kinhdo));
-    row.click(function () { 
-      // alert($(this).text()); // get data from row on list 
-       var array = $(this).text().split(',',1)[0];
-       var array2 = $(this).text().split(',',2)[1];
-       L.marker([array, array2], {icon: greenIcon}).addTo(map)
-       map.setView([array,array2], 20); // zoom 
-       console.log(array)
-       console.log(array2)
-     }); // ham click
-    // sai jquery 
-    $( ".table-ul-body .table-ul" ).append(row);
+        var row = $("<ul>");
+        row.css("cursor", "pointer");
+        row.append("<li class='col0'>{0},</li>".format(day + "/" + mon + "/" + ye));
+        row.append("<li class='col0'>{0},</li>".format(time + ":" + min + ":" + se));
+        row.append("<li class='col0'>{0},</li>".format(vido));
+        // row.append("<li class='col3'>{0}</li>".format(vido));
+        row.append("<li class='col3'>{0},</li>".format(kinhdo));
+        row.append("<li class='col3'>{0}</li>".format(speed));
+        // row.append("<li class='col3'>{0},</li>".format(kinhdo));
+        row.click(function () {
+            // alert($(this).text()); // get data from row on list 
+            var array = $(this).text().split(',', 3)[2];
+            var array2 = $(this).text().split(',', 4)[3];
+            // L.marker([array, array2], {
+            //     icon: greenIcon
+            // }).addTo(map)
+            // map.setView([array, array2], 20); // zoom 
+            console.log(array)
+            console.log(array2)
+        }); // ham click
+        // sai jquery 
+        $(".table-ul-body .table-ul").append(row);
     }
     console.log("LA",this.vido, "LO", this.kinhdo)
 
