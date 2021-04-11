@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -27,7 +26,6 @@
         crossorigin=""></script>
     <title>GPS TRACKING</title>
 </head>
-
 <body>
     <!-- navbar -->
     <div class="header">
@@ -39,17 +37,10 @@
         </div>
     </div>
     <!--  -->
-
-
     <div id="mapId" style=" width: 100%; margin-top: 2vh; display: block;">
-       
-
     </div>
 
     <div class="buton">
-
-
-
         <div class="form-check form-switch">
             <input class="form-check-input" data-bs-toggle="modal" href="#modal" type="checkbox" id="btn-check-2">
             <label class="form-check-label" for="flexSwitchCheckDefault">TrackingRealtime</label>
@@ -59,10 +50,7 @@
             <input class="form-check-input" data-bs-toggle="modal" href="#modal" type="checkbox" id="btn-check-21">
             <label class="form-check-label" for="flexSwitchCheckDefault">Lộ trình xe di chuyển</label>
         </div>
-
     </div>
-
-
     <!-- table -->
     <div id="tab" class="form-group route-table" style="margin-bottom: 0px ; display: none;">
         <div class="table-ul">
@@ -71,21 +59,16 @@
                 <li style="width: 23vw;" class="col3 text-center">Vĩ độ</li>
                 <li style="width: 25.6vw;" class="col3 text-center">Kinh độ</li>
                 <li class="col3 text-center">Tốc độ</li>
-
             </ul>
-
         </div>
         <div class="table-ul-body">
             <div class="table-ul">
                 <!-- <div  id="isa"></div>
                 <div id="isas"></div> -->
-
             </div>
-
         </div>
     </div>
     <!-- First modal dialog -->
-
     <!-- card -->
     <div class="cards">
         <div id="card12" style="display: none;" class="card" style="width: 18rem;">
@@ -96,12 +79,10 @@
                 <h6 class="card-subtitle mb-2 text-muted">Vĩ độ:<strong id="vido">10.823318</strong> </h6>
                 <h6 class="card-subtitle mb-2 text-muted">Kinh độ:<strong id="kinhdo">106.852312</strong> </h6>
                 <h6 class="card-subtitle mb-2 text-muted">Tốc độ:<strong id="tocdo">25kpm</strong> </h6>
-
             </div>
         </div>
     </div>
     <!--  -->
-
     <div class="modal fade show" id="modal" tabindex="-1" role="dialog" data-keyboard="false" data-backdrop="static">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
@@ -111,30 +92,21 @@
                         <span class="input-group-text" id="addon-wrapping">🌻</span>
                         <input type="password" id="pass" class="form-control" placeholder="Password"
                             aria-label="Username" aria-describedby="addon-wrapping">
-
                     </div>
                     <strong
                         style=" margin-right: 5vw; color: red; font-family:Courier New;font-size:16px;font-weight:bold;"
                         id="tb">Nhập mật khẩu của quản trị nhé!</strong>
-
-
                     <button class="btn btn-primary" onclick="click_pass()">Đăng nhập</button>
-
-
                 </div>
             </div>
         </div>
     </div>
-
-
-
     <!-- Button trigger modal -->
-    <button style="margin-left: 47%;" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+    <!-- <button style="margin-left: 47%;" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
         Ecall
-    </button>
-
+    </button> -->
     <!-- Modal -->
-    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    <div  class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
         aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -149,25 +121,17 @@
                     <h6 class="card-subtitle mb-2 text-muted">Vĩ độ:<strong>10.823318</strong> </h6>
                     <h6 class="card-subtitle mb-2 text-muted">Kinh độ:<strong>106.852312</strong> </h6>
                     <h6 class="card-subtitle mb-2 text-muted">Tốc độ:<strong>25kpm</strong> </h6>
-
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-
                     <a class="btn btn-primary" href="ecall.html">Chi tiết</a>
-
                 </div>
             </div>
         </div>
     </div>
-
-
-
-
     <script src="https://www.gstatic.com/firebasejs/8.1.2/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.1.2/firebase-database.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.1.2/firebase-auth.js"></script>
     <script type="text/javascript" src="/js/map.js"></script>
 </body>
-
 </html>

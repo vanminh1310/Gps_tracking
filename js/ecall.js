@@ -61,10 +61,10 @@ function gotData(data) {
             // alert($(this).text()); // get data from row on list 
             var array = $(this).text().split(',', 3)[2];
             var array2 = $(this).text().split(',', 4)[3];
-            // L.marker([array, array2], {
-            //     icon: greenIcon
-            // }).addTo(map)
-            // map.setView([array, array2], 20); // zoom 
+            L.marker([array, array2], {
+                icon: greenIcon
+            }).addTo(map)
+            map.setView([array, array2], 20); // zoom 
             console.log(array)
             console.log(array2)
         }); // ham click
@@ -87,4 +87,14 @@ L.tileLayer.wms("http://mesonet.agron.iastate.edu/cgi-bin/wms/nexrad/n0r.cgi", {
     format: 'image/png',
     transparent: true,
     attribution: "Weather data © 2012 IEM Nexrad"
+});
+var greenIcon = L.icon({
+    iconUrl: 'icon2.png',
+
+
+    iconSize: [70, 45], // size of the icon
+    //shadowSize:   [50, 64], // size of the shadow
+    iconAnchor: [25, 25], // point of the icon which will correspond to marker's location
+    //shadowAnchor: [4, 62],  // the same for the shadow
+    popupAnchor: [-2, -40] // point from which the popup should open relative to the iconAnchor
 });
