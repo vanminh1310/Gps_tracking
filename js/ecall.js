@@ -9,7 +9,7 @@ var firebaseConfig = {
     measurementId: "G-8PRCPKPS2K"
 };
 firebase.initializeApp(firebaseConfig);
-var ref = firebase.database().ref("GPS");
+var ref = firebase.database().ref("GPS2");
 ref.on("value", gotData);
 var kinhdo;
 var vido;
@@ -72,8 +72,23 @@ function gotData(data) {
         $(".table-ul-body .table-ul").append(row);
     }
     console.log("LA",this.vido, "LO", this.kinhdo)
+    document.getElementById('time').innerHTML= time + ":" + min + ":" + se;
+    document.getElementById('date').innerHTML = day + "/" + mon + "/" + ye;
+    document.getElementById('vido').innerHTML = vido;
+    document.getElementById('kinhdo').innerHTML = kinhdo;
+    document.getElementById('speed').innerHTML = speed;
 
 }
+
+var btnecall = firebase.database().ref().child("ecall")
+btnecall.on('value',function(btnecall){
+  // AS.innerHTML=btnecall.val();
+  console.log(btnecall.val());
+  if(btnecall.val()<20){
+    $('#staticBackdrop').modal('show');
+   }
+
+  });
 
 // tạo map
 var map = L.map('mapId').setView([10.8447125, 106.797841667], 5);

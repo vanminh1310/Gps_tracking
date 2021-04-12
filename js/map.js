@@ -1,13 +1,13 @@
-var firebaseConfig = {
-    apiKey: "AIzaSyALyfBlOsvmKDwNQLTKurC5hf_BmFKYnr4",
-    authDomain: "vann-53570.firebaseapp.com",
-    databaseURL: "https://vann-53570.firebaseio.com",
-    projectId: "vann-53570",
-    storageBucket: "vann-53570.appspot.com",
-    messagingSenderId: "476713717043",
-    appId: "1:476713717043:web:93e1c456a05aa8b8130246",
-    measurementId: "G-8PRCPKPS2K"
-};
+// var firebaseConfig = {
+//     apiKey: "AIzaSyALyfBlOsvmKDwNQLTKurC5hf_BmFKYnr4",
+//     authDomain: "vann-53570.firebaseapp.com",
+//     databaseURL: "https://vann-53570.firebaseio.com",
+//     projectId: "vann-53570",
+//     storageBucket: "vann-53570.appspot.com",
+//     messagingSenderId: "476713717043",
+//     appId: "1:476713717043:web:93e1c456a05aa8b8130246",
+//     measurementId: "G-8PRCPKPS2K"
+// };
 firebase.initializeApp(firebaseConfig);
 var ref = firebase.database().ref("GPS");
 ref.on("value", gotData);
@@ -94,12 +94,10 @@ var btnecall = firebase.database().ref().child("ecall")
 btnecall.on('value',function(btnecall){
   // AS.innerHTML=btnecall.val();
   console.log(btnecall.val());
-  if(btnecall.val()==1){
+  if(btnecall.val()<20){
     $('#staticBackdrop').modal('show');
    }
-   else{
-    $('#staticBackdrop').modal('hide'); 
-  }
+ 
   });
 
 function click_pass() {
