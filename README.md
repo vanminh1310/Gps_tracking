@@ -25,7 +25,8 @@
 
 `Có thể xem chi tiết các phương tiện bấm ecall tại đây`
 
-![image](https://user-images.githubusercontent.com/53778428/114485360-fc002600-9c35-11eb-98f1-6db89a625d69.png)
+![image](https://user-images.githubusercontent.com/53778428/114485802-c27bea80-9c36-11eb-9cfb-a5551c3a8585.png)
+
 
 ## Contributors
  - Tạ Văn Minh [Facebook](https://www.facebook.com/taminh1310) [Email](taminh39@gmail.com)
