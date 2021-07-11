@@ -80,6 +80,7 @@ function gotData(data) {
 
 }
 
+
 var btnecall = firebase.database().ref().child("ecall")
 btnecall.on('value',function(btnecall){
   // AS.innerHTML=btnecall.val();
