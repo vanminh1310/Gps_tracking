@@ -93,7 +93,8 @@ function gotData(data) {
             var vido1 = $(this).text().split(',', 2)[1];
             var kinhdo2 = $(this).text().split(',', 3)[2];
             var speeds = $(this).text().split(',', 4)[3];
-            var list = "<dl><dt>Time</dt>" +
+            var list = " <dt>Tracking</dt>" +
+            "<dt>Time</dt>" +
                 "<dd>" + time + "</dd>" +
                 "<dt>Tọa Độ</dt>" +
                 "<dd>" + vido1 + "," + kinhdo2 + "</dd>" +
@@ -145,7 +146,9 @@ function ecall(data) {
             var vido1 = $(this).text().split(',', 2)[1];
             var kinhdo2 = $(this).text().split(',', 3)[2];
             var speeds = $(this).text().split(',', 4)[3];
-            var list = "<dl><dt>Time</dt>" +
+            var list = 
+            "<dt>Ecall</dt>" +
+            "<dl><dt>Time</dt>" +
                 "<dd>" + time + "</dd>" +
                 "<dt>Tọa Độ</dt>" +
                 "<dd>" + vido1 + "," + kinhdo2 + "</dd>" +
