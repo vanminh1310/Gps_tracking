@@ -10,8 +10,9 @@
 // };
 firebase.initializeApp(firebaseConfig);
 
-var ref = firebase.database().ref("GPS3");
-ref.on("value", gotData);
+var track = firebase.database().ref("GPS3");
+var ref = firebase.database().ref("GPS2");
+// ref.on("value", gotData);
 var kinhdo;
 var vido;
 var time;
@@ -19,8 +20,15 @@ var min;
 var se;
 var dates;
 var speed;
+var kinhdo4;
 var btncheck = document.getElementById("btn-check-2");
 var btncheck2 = document.getElementById("btn-check-21");
+
+var time_ecall;
+var kinhdo_ecall;
+var vido_ecall;
+var speed_ecall;
+var date_ecall;
 
 // if (btncheck2.checked == false) {
 //     document.getElementById('tab').style.display = 'none'
@@ -51,6 +59,10 @@ function checkmap(e) {
 
 }
 
+var kinhdo3 = firebase.database().ref().child("GPS4/")
+ref.on("value", ecall);
+
+
 var make_gs;
 
 function gotData(data) {
@@ -60,6 +72,7 @@ function gotData(data) {
     // var textnode = document.createTextNode("Water")
     for (var i = 0; i < keys.length; i++) {
         var k = keys[i];
+       
         // Look at each fruit object!
         vido = scores[k].Latitude;
         kinhdo = scores[k].Longitude;
@@ -87,25 +100,74 @@ function gotData(data) {
                 "<dt>Tốc độ</dt>" +
                 "<dd>" + speeds + "</dd>"
             $(this).toggleClass('background_selected');
-          make_gs= L.marker([vido1, kinhdo2], {
-                    icon: greenIcon
-                }).addTo(map)
+            make_gs = L.marker([vido1, kinhdo2], {
+                icon: greenIcon
+            }).addTo(map)
             make_gs.bindPopup(list)
             map.setView([vido1, kinhdo2], 20); // zoom 
-
-
-
 
         }); // ham click
         // sai jquery 
         $(".table-ul-body .table-ul").append(row);
     }
     console.log("LA", this.vido, "LO", this.kinhdo)
-    document.getElementById('time').innerHTML = time
-    // document.getElementById('date').innerHTML = dates
-    document.getElementById('kinhdo').innerHTML = this.kinhdo
-    document.getElementById('vido').innerHTML = this.vido
-    document.getElementById('speed').innerHTML = speed + " kpm";
+
+
+}
+
+
+// ecall
+function ecall(data) {
+    var scores = data.val();
+    // Grab the keys to iterate over the object
+    var keys = Object.keys(scores);
+    // var textnode = document.createTextNode("Water")
+    for (var i = 0; i < keys.length; i++) {
+        var k = keys[i];
+        // Look at each fruit object!
+        vido_ecall = scores[k].Latitude;
+        kinhdo_ecall = scores[k].Longitude;
+        time_ecall = scores[k].Time
+        speed_ecall = scores[k].Speed
+        date_ecall = scores[k].Date
+        console.log(i)
+        document.getElementById('count').innerHTML=i
+        console.log(time_ecall)
+        var row = $("<ul>");
+        row.css("cursor", "pointer");
+        row.append("<li class='col0'>{0},</li>".format(time_ecall));
+        row.append("<li class='col0'>{0},</li>".format(vido_ecall));
+        row.append("<li class='col0'>{0},</li>".format(kinhdo_ecall));
+        row.append("<li class='col0'>{0}</li>".format(speed_ecall));
+        row.click(function () {
+            // alert($(this).text()); // get data from row on list 
+            var time = $(this).text().split(',', 1)[0];
+            var vido1 = $(this).text().split(',', 2)[1];
+            var kinhdo2 = $(this).text().split(',', 3)[2];
+            var speeds = $(this).text().split(',', 4)[3];
+            var list = "<dl><dt>Time</dt>" +
+                "<dd>" + time + "</dd>" +
+                "<dt>Tọa Độ</dt>" +
+                "<dd>" + vido1 + "," + kinhdo2 + "</dd>" +
+                "<dt>Tốc độ</dt>" +
+                "<dd>" + speeds + "</dd>"
+            $(this).toggleClass('background_selected');
+            make_gs = L.marker([vido1, kinhdo2], {
+                icon: waring
+            }).addTo(map)
+            make_gs.bindPopup(list)
+            map.setView([vido1, kinhdo2], 20); // zoom 
+
+        }); // ham click
+        // sai jquery 
+        $(".table-ul-body-ecall .table-ul-ecall").append(row);
+    }
+    console.log("LA", this.vido_ecall, "LO", this.kinhdo_ecall)
+    document.getElementById('time_ecal').innerHTML= time_ecall
+    document.getElementById('date_ecal').innerHTML = date_ecall
+    document.getElementById('vido_ecal').innerHTML = vido_ecall
+    document.getElementById('kinhdo_ecal').innerHTML = kinhdo_ecall
+    document.getElementById('speed_ecal').innerHTML = speed_ecall
 
 
 }
@@ -115,23 +177,34 @@ function gotData(data) {
 var btn1 = false;
 var btn2 = false;
 var btn3 = false;
+var btn_ecall = false;
 
 
 $('#tk,#gs,#ecall').click(function () {
     if (this.id == 'tk') {
         btn1 = true;
-        console.log(btn1);
+        
+    
+     
     }
     if (this.id == 'gs') {
         btn2 = true;
-        console.log(btn1);
-     
-  
+       
+       
+        // 
+
     }
     if (this.id == 'ecall') {
         btn3 = true;
-        console.log(btn1);
+      
+
     }
+    if (this.id == 'btn_ecall') {
+        btn_ecall = true;
+      
+
+    }
+
 
 });
 
@@ -140,7 +213,7 @@ var btnecall = firebase.database().ref().child("ecall")
 btnecall.on('value', function (btnecall) {
     // AS.innerHTML=btnecall.val();
     console.log(btnecall.val());
-    if (btnecall.val() < 20) {
+    if (btnecall.val() > 1.2) {
         $('#staticBackdrop').modal('show');
     }
 
@@ -159,40 +232,70 @@ function click_pass() {
             $('.modal-backdrop').remove();
             console.log("test1");
             // alert("Chế độ Checking Real Time")
-            var list =
-                "<dt>VanMinh</dt>" +
-                "<dt>Time</dt>" +
-                "<dd>" + time + "</dd>" +
-                "<dt>Tọa Độ</dt>" +
-                "<dd>" + vido + "," + kinhdo + "</dd>" +
-                "<dt>Tốc độ</dt>" +
-                "<dd>" + speed + "</dd>"
+            kinhdo3.on('value', function (kinhdo3) {
+                // AS.innerHTML=kinhdo3.val();
 
-            L.marker([vido, kinhdo], {
-                    icon: human
-                }).addTo(map)
-                .bindPopup(list)
-            map.setView([vido, kinhdo], 18);
+                kinhdo4 = kinhdo3.val().LO
+                var time = kinhdo3.val().TIME
+                var vido4 = kinhdo3.val().LA
+                var sp = kinhdo3.val().SP
+
+                document.getElementById('time').innerHTML = time
+                // document.getElementById('date').innerHTML = dates
+                document.getElementById('kinhdo').innerHTML = kinhdo4
+                document.getElementById('vido').innerHTML = vido4
+                document.getElementById('speed').innerHTML = sp + " kpm";
+                var list =
+                    "<dt>VanMinh</dt>" +
+                    "<dt>Time</dt>" +
+                    "<dd>" + time + "</dd>" +
+                    "<dt>Tọa Độ</dt>" +
+                    "<dd>" + vido4 + "," + kinhdo4 + "</dd>" +
+                    "<dt>Tốc độ</dt>" +
+                    "<dd>" + sp + "</dd>"
+
+                L.marker([vido4, kinhdo4], {
+                        icon: human
+                    }).addTo(map)
+                    .bindPopup(list)
+                map.setView([vido4, kinhdo4], 18);
 
 
+            });
             document.getElementById('gr_serach').style.display = 'block'
-            document.getElementById('mapId').style.display = 'block'
             document.getElementById('list_ul').style.display = 'none'
+            document.getElementById('list_ulecall').style.display = 'none'
 
         }
         if (pass == pass2 && btn2 == true) {
+            track.on("value", gotData);
             $('#modal').modal('hide');
             $('.modal-backdrop').remove();
             console.log("test12");
             document.getElementById('list_ul').style.display = 'block'
             document.getElementById('gr_serach').style.display = 'none'
+            document.getElementById('list_ulecall').style.display = 'none'
+        }
+        if (pass == pass2 && btn3 == true) {
          
-        } else {
+            $('#modal').modal('hide');
+            $('.modal-backdrop').remove();
+            console.log("test12");
+            document.getElementById('list_ul').style.display = 'none'
+            document.getElementById('gr_serach').style.display = 'none'
+            document.getElementById('list_ulecall').style.display = 'block'
+
+        } 
+      else {
             document.getElementById("tb").innerHTML = "Mật khẩu sai rồi hay thử lại nhé!"
         }
     });
 
 }
+
+
+
+
 
 // icon 
 var greenIcon = L.icon({
@@ -205,6 +308,14 @@ var greenIcon = L.icon({
 
 var human = L.icon({
     iconUrl: 'pngegg.png',
+    iconSize: [25, 41],
+    iconAnchor: [12, 41],
+    popupAnchor: [1, -34],
+    shadowSize: [41, 41]
+});
+
+var waring = L.icon({
+    iconUrl: 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|e85141&chf=a,s,ee00FFFF',
     iconSize: [25, 41],
     iconAnchor: [12, 41],
     popupAnchor: [1, -34],

@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script type="text/javascript" src="/js/jQuery-2.1.3.js"></script>
     <link rel="shortcut icon" href="/img/icon.png">
- 
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"
@@ -24,10 +25,11 @@
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
         integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
         crossorigin=""></script>
-        <script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" data-auto-replace-svg="nest"></script>
-        <link type="text/css" href="/css/main.css" rel="stylesheet" />
+    <script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" data-auto-replace-svg="nest"></script>
+    <link type="text/css" href="/css/main.css" rel="stylesheet" />
     <title>GPS TRACKING</title>
 </head>
+
 <body>
     <!-- navbar -->
     <div class="header">
@@ -39,34 +41,48 @@
         </div>
     </div>
     <!--  -->
-   
+
     <div id="mapId" style=" width: 100%; height: 90vh; margin-top: 2vh;">
-         <!-- <button  class="fas fa-crosshairs"  "></button> -->
-         <button  onclick="checkmap()" type="button"  style="z-index: 999;  position: absolute; right: 0; margin-top: 1vh; margin-right: 1vw;" class="btn btn-primary"><i class="fas fa-crosshairs"></i></button>
-         <div id="test" class="card card-map">
+        <!-- <button  class="fas fa-crosshairs"  "></button> -->
+        <button onclick="checkmap()" type="button"
+            style="z-index: 999;  position: absolute; right: 0; margin-top: 1vh; margin-right: 1vw;"
+            class="btn btn-primary"><i class="fas fa-crosshairs"></i></button>
+        <button id="btn_ecall" type="button"
+       
+            style="z-index: 999;  position: absolute; right: 0; margin-top: 8vh; margin-right: 1vw;"
+            class="btn btn-primary btn-so"><i class="fas fa-siren-on"></i> </button><span id="count"
+            class="counter counter-lg count">40</span>
+
+
+        <div id="test" class="card card-map">
             <div class="btn1" style="display: flex; margin-bottom: 20px; z-index: 999;">
-                <button id="tk" data-bs-toggle="modal" href="#modal"  type="button"  class="btn btn-outline-primary">Tìm kiếm </button>
-                <button id="gs" data-bs-toggle="modal" href="#modal"  type="button" style="margin-left: 2vw; margin-right: 2vw;" class="btn btn-outline-info">Giám sát</button>
-                <button id="ecall" data-bs-toggle="modal" href="#modal"  type="button" class="btn btn-outline-warning">Ecall</button>
+                <button id="tk" data-bs-toggle="modal" href="#modal" type="button" class="btn btn-outline-primary">Tìm
+                    kiếm </button>
+                <button id="gs" data-bs-toggle="modal" href="#modal" type="button"
+                    style="margin-left: 2vw; margin-right: 2vw;" class="btn btn-outline-info">Giám sát</button>
+                <button id="ecall" data-bs-toggle="modal" href="#modal" type="button"
+                    class="btn btn-outline-warning">Ecall</button>
             </div>
-            <div id="gr_serach"  class="serach" style=" z-index: 999; display: none; " >
+            <div id="gr_serach" class="serach" style=" z-index: 999; display: none; ">
                 <h6>Tìm kiếm và định vị xe</h6>
                 <div class="input-group mb-3">
-                    <input type="text" class="form-control" placeholder="Biển số xe" aria-label="Recipient's username" aria-describedby="button-addon2">
+                    <input type="text" class="form-control" placeholder="Biển số xe" aria-label="Recipient's username"
+                        aria-describedby="button-addon2">
                     <button class="btn btn-outline-secondary" type="button" id="button-addon2">Tìm kiếm </button>
-                  </div>
-                  <div class="card card_name" style="width: auto;">
-                    <img src="https://scontent.fsgn8-1.fna.fbcdn.net/v/t1.6435-9/116797445_2676430292625755_1760021857097968366_n.jpg?_nc_cat=111&ccb=1-3&_nc_sid=09cbfe&_nc_ohc=ACxJnkE9jwsAX8S45CC&tn=NkG_JZvaYQu9f1OE&_nc_ht=scontent.fsgn8-1.fna&oh=7e47ba3542547fc7937e581fb161e2df&oe=60E9CC5D" class="img-thumbnail" style="border-radius: 50%;height: 20vh; width: 10vw;">
+                </div>
+                <div class="card card_name" style="width: auto;">
+                    <img src="/img/minh.jpg"
+                        class="img-thumbnail" style="border-radius: 50%;height: 20vh; width: 10vw;">
                     <div class="card-body">
-                      <h5 class="card-title">Thông tin xe</h5>
-                      <p class="card-text">Tên chủ xe:Tạ Văn Minh</p>
-                      <p class="card-text">Biển số xe:49G1-64823 </p>
-                      <p class="card-text">Thời gian: <strong id="time"></strong> </p>
-                      <p class="card-text">Tốc độ: <strong id="speed"></strong> </p>
-                      <p class="card-text">Kinh độ: <strong id="kinhdo"></strong> </p>
-                      <p class="card-text">Vĩ độ: <strong id="vido"></strong> </p>
+                        <h5 class="card-title">Thông tin xe</h5>
+                        <p class="card-text">Tên chủ xe:</p>
+                        <p class="card-text">Biển số xe:49G1 </p>
+                        <p class="card-text">Thời gian: <strong id="time"></strong> </p>
+                        <p class="card-text">Tốc độ: <strong id="speed"></strong> </p>
+                        <p class="card-text">Kinh độ: <strong id="kinhdo"></strong> </p>
+                        <p class="card-text">Vĩ độ: <strong id="vido"></strong> </p>
                     </div>
-                  </div>
+                </div>
             </div>
 
             <div id="list_ul" class=" table-ul" style="display: none;">
@@ -75,21 +91,39 @@
                     <li style="width: 9.15;" class=" text-center">Vi do</li>
                     <li style="width: 9.15;" class=" text-center">kinh doa</li>
                     <li style="width: 9.15;" class=" text-center">Tốc độ</li>
-            
-    
+
+
                 </ul>
                 <div class="table-ul-body">
                     <div id="lid" class="table-ul">
-                      
+
                     </div>
-        
+
                 </div>
             </div>
-           
-        </div>
-     </div>
 
-   
+
+            <div id="list_ulecall" class=" table-ul" style="display: none;">
+                <ul style="display: flex; " class="table-ul-header">
+                    <li style="width: 9.15vw;" class=" text-center">Thời gian</li>
+                    <li style="width: 9.15;" class=" text-center">Vi do</li>
+                    <li style="width: 9.15;" class=" text-center">kinh doa</li>
+                    <li style="width: 9.15;" class=" text-center">Tốc độ</li>
+
+
+                </ul>
+                <div class="table-ul-body-ecall">
+                    <div id="lid" class="table-ul-ecall">
+
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
     <div class="modal fade show" id="modal" tabindex="-1" role="dialog" data-keyboard="false" data-backdrop="static">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
@@ -113,7 +147,7 @@
         Ecall
     </button> -->
     <!-- Modal -->
-    <div  class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
         aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -123,11 +157,11 @@
                 </div>
                 <div class="modal-body">
                     <h6 class="card-subtitle mb-2 text-muted">Biến số xe: <strong>99E199999</strong> </h6>
-                    <h6 class="card-subtitle mb-2 text-muted">Thời gian: <strong>3:30:30</strong> </h6>
-                    <h6 class="card-subtitle mb-2 text-muted">Ngày:<strong>7/4/2021</strong> </h6>
-                    <h6 class="card-subtitle mb-2 text-muted">Vĩ độ:<strong>10.823318</strong> </h6>
-                    <h6 class="card-subtitle mb-2 text-muted">Kinh độ:<strong>106.852312</strong> </h6>
-                    <h6 class="card-subtitle mb-2 text-muted">Tốc độ:<strong>25kpm</strong> </h6>
+                    <h6 class="card-subtitle mb-2 text-muted">Thời gian: <strong id="time_ecal">3:30:30</strong> </h6>
+                    <h6 class="card-subtitle mb-2 text-muted">Ngày:<strong id="date_ecal">7/4/2021</strong> </h6>
+                    <h6 class="card-subtitle mb-2 text-muted">Vĩ độ:<strong id="vido_ecal">10.823318</strong> </h6>
+                    <h6 class="card-subtitle mb-2 text-muted">Kinh độ:<strong id="kinhdo_ecal">106.852312</strong> </h6>
+                    <h6 class="card-subtitle mb-2 text-muted">Tốc độ:<strong id="speed_ecal" >25kpm</strong> </h6>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -136,24 +170,25 @@
             </div>
         </div>
     </div>
- 
+
     <script type="text/javascript">
         var firebaseConfig = {
-        apiKey: "AIzaSyALyfBlOsvmKDwNQLTKurC5hf_BmFKYnr4",
-        authDomain: "vann-53570.firebaseapp.com",
-        databaseURL: "https://vann-53570.firebaseio.com",
-        projectId: "vann-53570",
-        storageBucket: "vann-53570.appspot.com",
-        messagingSenderId: "476713717043",
-        appId: "1:476713717043:web:93e1c456a05aa8b8130246",
-        measurementId: "G-8PRCPKPS2K"
-    };
+            apiKey: "AIzaSyALyfBlOsvmKDwNQLTKurC5hf_BmFKYnr4",
+            authDomain: "vann-53570.firebaseapp.com",
+            databaseURL: "https://vann-53570.firebaseio.com",
+            projectId: "vann-53570",
+            storageBucket: "vann-53570.appspot.com",
+            messagingSenderId: "476713717043",
+            appId: "1:476713717043:web:93e1c456a05aa8b8130246",
+            measurementId: "G-8PRCPKPS2K"
+        };
     // firebase.initializeApp(firebaseConfig);
-</script>
+    </script>
     <script src="https://www.gstatic.com/firebasejs/8.1.2/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.1.2/firebase-database.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.1.2/firebase-auth.js"></script>
     <script type="text/javascript" src="/js/map.js"></script>
-    <script src="/js/ecall.js"></script>
+    <!-- <script src="/js/ecall.js"></script> -->
 </body>
+
 </html>

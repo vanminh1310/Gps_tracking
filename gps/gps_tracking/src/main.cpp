@@ -23,20 +23,22 @@ Adafruit_ADXL345_Unified accel = Adafruit_ADXL345_Unified();
 float a;
 // gps
 #include <TinyGPS++.h>
-
+long last = 0;
+long last2 = 0;
 TinyGPSPlus gps;
 #define RXPin 13
 #define TXPin 14
 static const uint32_t GPSBaud = 9600;
 SoftwareSerial ss(RXPin, TXPin);
 unsigned int move_index = 1;
-//firebase 
+//firebase
 #include <FirebaseESP32.h>
-#define FIREBASE_HOST "vann-53570.firebaseio.com" // ten host cua firebase
+#define FIREBASE_HOST "vann-53570.firebaseio.com"                // ten host cua firebase
 #define FIREBASE_AUTH "LC6fDYVqNO7VVBfoymADdWtLZVl6jr6WVJxhONrF" // ma dôi cái này nữa
-FirebaseData firebaseData; // firebase datb
+FirebaseData firebaseData;                                       // firebase datb
 FirebaseJson json;
-// time 
+FirebaseJson json2;
+// time
 
 WiFiUDP ntpUDP;
 NTPClient timeClient(ntpUDP, "pool.ntp.org", 7 * 3600);
@@ -44,7 +46,6 @@ String formattedDate;
 String dayStamp;
 String timeStamp;
 
-unsigned long last;
 void hello();   // ham cho oled
 void ADXL345(); // ham cho gia toc
 void max30105();
@@ -52,7 +53,7 @@ void checkGPS();
 void vitri();
 void setup()
 {
-  
+
   Wire.begin(5, 4);
   WiFi.mode(WIFI_STA);
   Serial.begin(9600);
@@ -62,7 +63,7 @@ void setup()
     for (;;)
       ;
   }
- 
+
   delay(1000);
   display.clearDisplay();
   display.setTextColor(WHITE);
@@ -98,30 +99,46 @@ void setup()
   particleSensor.enableDIETEMPRDY();
   ss.begin(9600);
   timeClient.begin();
-  
+
   Firebase.begin(FIREBASE_HOST, FIREBASE_AUTH);
- 
+  last = millis();
+  last2 = millis();
 }
 void loop()
 {
   timeClient.update();
+   //Firebase.setFloat(firebaseData, "/ecall", a);
+
   ADXL345();
   max30105();
 
   timeStamp = timeClient.getFormattedTime();
   formattedDate = timeClient.getFormattedDate();
-    int splitT = formattedDate.indexOf("T");
+  int splitT = formattedDate.indexOf("T");
   dayStamp = formattedDate.substring(0, splitT);
   Serial.println(dayStamp);
-  Serial.println( timeStamp);
- 
+  Serial.println(timeStamp);
 
+  if (millis() - last >= 50000)
+  {
+    vitri();
+
+    last = millis();
+  }
+  if (millis() - last2 >= 1000)
+  {
+    Firebase.setFloat(firebaseData, "/GPS4/LA", gps.location.lat());
+    Firebase.setFloat(firebaseData, "/GPS4/LO", gps.location.lng());
+    Firebase.setString(firebaseData, "/GPS4/TIME", timeStamp);
+    Firebase.setFloat(firebaseData, "/GPS4/SP", gps.speed.kmph());
+    Firebase.setFloat(firebaseData, "/ecall", a);
+    last2 = millis();
+  }
   while (ss.available() > 0)
   {
     if (gps.encode(ss.read()))
     {
       Serial.println("GPS");
-      vitri();
     }
   }
 }
@@ -156,6 +173,18 @@ void ADXL345()
   // Serial.print("  ");
   // Serial.println("m/s^2 ");
   a = sqrt(event.acceleration.x * event.acceleration.x * 0.0078 + event.acceleration.y * event.acceleration.y * 0.0078 + event.acceleration.z * event.acceleration.z * 0.0078);
+  if (a > 1.2)
+  {
+    json2.set("Latitude", gps.location.lat());
+    json2.set("Longitude", gps.location.lng());
+    json2.set("Time", timeStamp);
+    json2.set("Date", dayStamp);
+    json2.set("Speed", gps.speed.kmph());
+Firebase.setFloat(firebaseData, "/ecall", a);
+    Firebase.pushJSON(firebaseData, "/GPS2/", json2);
+  }    
+  Serial.print("giatria");
+  Serial.println(a);
 }
 void max30105()
 {
@@ -185,7 +214,7 @@ void max30105()
   display.print("Speed: ");
   display.setTextSize(2);
   display.setCursor(0, 45);
-  display.print(timeStamp);
+  display.print(gps.speed.kmph());
   display.print(" ");
   display.display();
 }
@@ -202,12 +231,12 @@ void vitri()
   {
     float latitude = (gps.location.lat()); //Storing the Lat. and Lon.
     float longitude = (gps.location.lng());
-    json.set("Latitude", latitude );
-      json.set("Longitude",  longitude );
-       json.set("Time",timeStamp);
-       json.set("Date",dayStamp);
-       json.set("Speed",gps.speed.kmph());
-      Firebase.pushJSON(firebaseData, "/GPS3/", json);
-    
+    Serial.println(latitude);
+    json.set("Latitude", latitude);
+    json.set("Longitude", longitude);
+    json.set("Time", timeStamp);
+    json.set("Date", dayStamp);
+    json.set("Speed", gps.speed.kmph());
+    Firebase.pushJSON(firebaseData, "/GPS3/", json);
   }
 }
