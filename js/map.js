@@ -216,7 +216,7 @@ var btnecall = firebase.database().ref().child("ecall")
 btnecall.on('value', function (btnecall) {
     // AS.innerHTML=btnecall.val();
     console.log(btnecall.val());
-    if (btnecall.val() > 1.2) {
+    if (btnecall.val() > 10) {
         $('#staticBackdrop').modal('show');
     }
 
