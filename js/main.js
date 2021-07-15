@@ -27,15 +27,6 @@ var firebaseConfig = {
 
 $(function ()
 {
-
-   
-
-
-
-
-
-
-
     var Core = {};
     Core.Timer = function (option) {
         if (option == null) option = {};

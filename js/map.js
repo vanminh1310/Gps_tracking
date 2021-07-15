@@ -72,7 +72,7 @@ function gotData(data) {
     // var textnode = document.createTextNode("Water")
     for (var i = 0; i < keys.length; i++) {
         var k = keys[i];
-       
+
         // Look at each fruit object!
         vido = scores[k].Latitude;
         kinhdo = scores[k].Longitude;
@@ -94,7 +94,7 @@ function gotData(data) {
             var kinhdo2 = $(this).text().split(',', 3)[2];
             var speeds = $(this).text().split(',', 4)[3];
             var list = " <dt>Tracking</dt>" +
-            "<dt>Time</dt>" +
+                "<dt>Time</dt>" +
                 "<dd>" + time + "</dd>" +
                 "<dt>Tọa Độ</dt>" +
                 "<dd>" + vido1 + "," + kinhdo2 + "</dd>" +
@@ -132,7 +132,7 @@ function ecall(data) {
         speed_ecall = scores[k].Speed
         date_ecall = scores[k].Date
         console.log(i)
-        document.getElementById('count').innerHTML=i
+        document.getElementById('count').innerHTML = i
         console.log(time_ecall)
         var row = $("<ul>");
         row.css("cursor", "pointer");
@@ -146,9 +146,9 @@ function ecall(data) {
             var vido1 = $(this).text().split(',', 2)[1];
             var kinhdo2 = $(this).text().split(',', 3)[2];
             var speeds = $(this).text().split(',', 4)[3];
-            var list = 
-            "<dt>Ecall</dt>" +
-            "<dl><dt>Time</dt>" +
+            var list =
+                "<dt>Ecall</dt>" +
+                "<dl><dt>Time</dt>" +
                 "<dd>" + time + "</dd>" +
                 "<dt>Tọa Độ</dt>" +
                 "<dd>" + vido1 + "," + kinhdo2 + "</dd>" +
@@ -166,7 +166,7 @@ function ecall(data) {
         $(".table-ul-body-ecall .table-ul-ecall").append(row);
     }
     console.log("LA", this.vido_ecall, "LO", this.kinhdo_ecall)
-    document.getElementById('time_ecal').innerHTML= time_ecall
+    document.getElementById('time_ecal').innerHTML = time_ecall
     document.getElementById('date_ecal').innerHTML = date_ecall
     document.getElementById('vido_ecal').innerHTML = vido_ecall
     document.getElementById('kinhdo_ecal').innerHTML = kinhdo_ecall
@@ -186,25 +186,25 @@ var btn_ecall = false;
 $('#tk,#gs,#ecall').click(function () {
     if (this.id == 'tk') {
         btn1 = true;
-        
-    
-     
+
+
+
     }
     if (this.id == 'gs') {
         btn2 = true;
-       
-       
+
+
         // 
 
     }
     if (this.id == 'ecall') {
         btn3 = true;
-      
+
 
     }
     if (this.id == 'btn_ecall') {
         btn_ecall = true;
-      
+
 
     }
 
@@ -216,7 +216,7 @@ var btnecall = firebase.database().ref().child("ecall")
 btnecall.on('value', function (btnecall) {
     // AS.innerHTML=btnecall.val();
     console.log(btnecall.val());
-    if (btnecall.val() > 10) {
+    if (btnecall.val() >1.2) {
         $('#staticBackdrop').modal('show');
     }
 
@@ -280,7 +280,7 @@ function click_pass() {
             document.getElementById('list_ulecall').style.display = 'none'
         }
         if (pass == pass2 && btn3 == true) {
-         
+
             $('#modal').modal('hide');
             $('.modal-backdrop').remove();
             console.log("test12");
@@ -288,8 +288,7 @@ function click_pass() {
             document.getElementById('gr_serach').style.display = 'none'
             document.getElementById('list_ulecall').style.display = 'block'
 
-        } 
-      else {
+        } else {
             document.getElementById("tb").innerHTML = "Mật khẩu sai rồi hay thử lại nhé!"
         }
     });
