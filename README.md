@@ -1,5 +1,5 @@
 # Overview
-## Xây dựng hệ thống giám sát hành trình cho phương tiện giao thông sử dụng ESP32 và GPS_NEO_M6_V2.
+## Xây dựng hệ thống giám sát hành trình cho phương tiện giao thông sử dụng ESP32 và GPS_NEO_M6_V2.(này viết lâu rồi nên lười sửa lại)
 ## Với một số tính năng sau: 
   - Chức năng giám sát phương tiện theo thời gian thực với độ trễ nhỏ.
   - Xem lại hành trình xe đã di chuyển qua các mốc thời gian cụ thể.
