@@ -9,7 +9,7 @@
 ## Hướng phát triển. 
   - Kết hợp thêm với modul sim800l để hệ thống được hoàn thiện hơn.
   - Hiện tại mới quản lý được một phương tiện duy nhất, cải tiển để có thể quản lý được nhiều phương tiện hơn.
-  - Sự dụng thêm cảm biến [ gia tốc mpu6050](https://hshop.vn/products/cam-bien-6-dof-bac-tu-do-gy-521-mpu6050) để chức năng ecll được hoàn hiện hơn.
+  - Sự dụng thêm cảm biến [ gia tốc mpu6050](https://hshop.vn/products/cam-bien-6-dof-bac-tu-do-gy-521-mpu6050) để chức năng ecll được hoàn hiện hơn.(đã thêm)
 ## Một số hình ảnh 
 `Giao diện giám sát`
 
@@ -27,6 +27,7 @@
 
 ![image](https://user-images.githubusercontent.com/53778428/114485802-c27bea80-9c36-11eb-9cfb-a5551c3a8585.png)
 
+[Demo](https://www.youtube.com/watch?v=wczg0Y3QzBE)
 
 ## Contributors
  - Tạ Văn Minh [Facebook](https://www.facebook.com/taminh1310) [Email](taminh39@gmail.com)
