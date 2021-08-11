@@ -216,7 +216,7 @@ var btnecall = firebase.database().ref().child("ecall")
 btnecall.on('value', function (btnecall) {
     // AS.innerHTML=btnecall.val();
     console.log(btnecall.val());
-    if (btnecall.val() >1.2) {
+    if (btnecall.val() > 1.2) {
         $('#staticBackdrop').modal('show');
     }
 
@@ -258,8 +258,8 @@ function click_pass() {
                     "<dd>" + sp + "</dd>"
 
                 L.marker([vido4, kinhdo4], {
-                        icon: human
-                    }).addTo(map)
+                    icon: human
+                }).addTo(map)
                     .bindPopup(list)
                 map.setView([vido4, kinhdo4], 18);
 
